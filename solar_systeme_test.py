@@ -108,7 +108,7 @@ ax.set_ylim3d([-1.0, 1.0])
 
 ax.set_zlim3d([-1.0, 1.0])
 
-ax.set_title('Trajectoires de quelques planètes du système solaire en approximativement 1 année (distance en UA)')
+
 plt.show()
 
 
