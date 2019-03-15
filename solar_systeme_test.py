@@ -6,6 +6,12 @@ from mpl_toolkits.mplot3d import Axes3D
 def distance(x1,x2,y1,y2,z1,z2):
 	return np.sqrt((x1-x2)**2+(y1-y2)**2+(z1-z2)**2)
 
+def Ecinetique(m,vx,vy,vz):
+	return 0.5*m*(vx**2+vy**2+vz**2)
+
+def Epotentielle(m1,m2,d):
+	return -0.5*G*m1*m2/d   #Multiplication par 0.5 parceque je compte deux fois l'energie: pour un couple {i,j} de particule, je compte Eij et Eji, donc il faut diviser par deux
+
 
 nombrePlan=4
 Tmasse=[1.988544e30,3.302e23,4.8685e24, 5.97219e24]
@@ -77,6 +83,7 @@ for i in range(1,N):
                 ax+=a*(TPosx[i-1,planete]-TPosx[i-1,planeteAutre])/d               
                 ay+=a*(TPosy[i-1,planete]-TPosy[i-1,planeteAutre])/d
                 az+=a*(TPosz[i-1,planete]-TPosz[i-1,planeteAutre])/d
+                Epot[i-1]=Epot[i-1]+Epotentielle(Tmasse[planete],Tmasse[planeteAutre],d)
 
         TVitx[i,planete]=TVitx[i-1,planete]+dt*ax
         TVity[i,planete]=TVity[i-1,planete]+dt*ay	
@@ -84,6 +91,8 @@ for i in range(1,N):
         TPosx[i,planete]=TPosx[i-1,planete]+dt*TVitx[i,planete]
         TPosy[i,planete]=TPosy[i-1,planete]+dt*TVity[i,planete]
         TPosz[i,planete]=TPosz[i-1,planete]+dt*TVitz[i,planete]
+        
+        Ecin[i-1]=Ecin[i-1]+Ecinetique(Tmasse[planete],TVitx[i,planete],TVity[i,planete],TVitz[i,planete])
 
 fig = plt.figure()
 ax = fig.gca(projection='3d')
@@ -101,3 +110,6 @@ ax.set_zlim3d([-1.0, 1.0])
 
 ax.set_title('Trajectoires de quelques planètes du système solaire en approximativement 1 année (distance en UA)')
 plt.show()
+
+
+

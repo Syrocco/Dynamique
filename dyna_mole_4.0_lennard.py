@@ -96,8 +96,8 @@ rd.seed(4)
 nombrePlan=3
 
 temps=20
-dt=0.01
-N=200
+dt=0.001
+N=50
 
 T=np.zeros(N)
 
@@ -143,7 +143,7 @@ while ttab[i]<N:
         """Ecin[i-1]=Ecin[i-1]+Ecinetique(TVitx[i,planete],TVity[i,planete],TVitz[i,planete])"""
 
 
-    dt=0.01/np.max(NormeVitesse(TVitx[i,:],TVity[i,:],TVitz[i,:]))
+    dt=0.001
     ttab.append(ttab[i-1]+dt)
    
 
@@ -161,4 +161,6 @@ plt.plot(ttab[:N-1],Ecin,label="Ecin")
 plt.plot(ttab[:N-1],Etot,label="Etot")
 plt.legend()"""
 plt.show()
+"""
+/np.max(NormeVitesse(TVitx[i,:],TVity[i,:],TVitz[i,:]))"""
 
