@@ -1,6 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
-
+"""
+pression= 0.529343220585 temperature= 1.04680483866
+pression= 0.517005334184 temperature= 1.03307557194
+"""
 """
 N=20
 l=6
