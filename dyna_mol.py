@@ -264,12 +264,6 @@ for i in range(1,N):
 ###-----------------Calculs-----------------###    
 ###############################################
 
-
-        
-#Calcul de l'énergie totale     
-Etot=Epot[1:-1]+Ecin[1:-1]
-
-
 #Calcul de la pression exercée sur les parois 
 aireBoite=6*(2*TailleBoite)**2
 pas=100
@@ -290,9 +284,15 @@ for i in range(int(N/2),N):
 temperature=eneCinMoyenne/(1.5*kb*nombrePlan)
 
 
-pression=sum(Tpress[:int(len(Tpress)/2)])*2/len(Tpress)   #Pression exercée en moyenne sur les parois pendant le temps (dt*N)/2
+
+#Pression exercée en moyenne sur les parois pendant le temps (dt*N)/2
+pression=sum(Tpress[:int(len(Tpress)/2)])*2/len(Tpress)
+
+#Calcul de l'énergie totale     
+Etot=Epot[1:-1]+Ecin[1:-1]
 
 print("pression=", pression,"temperature=",temperature )  
+
 
         
 ###########################################################
